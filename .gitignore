@@ -1,0 +1,33 @@
+# 训练素材、权重、输出音频一律不入库
+*.ogg
+*.opus
+*.wav
+*.flac
+*.mp3
+
+# 工具输出
+work/
+decoded/
+output/
+cuts/
+refs/
+dataset/
+testdata/
+*.jsonl
+report.json
+cache.json
+
+# GPT-SoVITS 数据集清单：含本机绝对路径与素材信息，绝不能入库
+*.list
+
+# 模型权重
+*.pth
+*.ckpt
+*.safetensors
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env

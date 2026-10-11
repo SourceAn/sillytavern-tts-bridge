@@ -1,0 +1,16 @@
+{
+    "display_name": "四季夏目 · 语音与好感度",
+    "loading_order": 60,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "HarnessForge local",
+    "version": "1.0.0",
+    "homePage": "http://127.0.0.1:9880/",
+    "hooks": {
+        "activate": "onActivate",
+        "enable": "onEnable",
+        "disable": "onDisable"
+    }
+}

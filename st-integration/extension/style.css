@@ -1,0 +1,175 @@
+/* 四季夏目 · 语音与好感度 —— 轻量样式，跟随酒馆主题变量 */
+
+.natsume-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.9em;
+}
+
+.natsume-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.natsume-row > label {
+    min-width: 7.5em;
+    opacity: 0.85;
+}
+
+.natsume-panel input[type="text"],
+.natsume-panel input[type="number"],
+.natsume-panel select {
+    flex: 1 1 8em;
+    min-width: 5em;
+}
+
+.natsume-meter {
+    flex: 1 1 12em;
+    height: 12px;
+    border-radius: 6px;
+    background: var(--black30a, rgba(0, 0, 0, 0.3));
+    overflow: hidden;
+    border: 1px solid var(--white20a, rgba(255, 255, 255, 0.2));
+}
+
+.natsume-meter > i {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #6a7f9c, #c9a0b4);
+    transition: width 0.35s ease;
+}
+
+.natsume-hint {
+    opacity: 0.7;
+    font-size: 0.85em;
+    line-height: 1.4;
+}
+
+.natsume-chips {
+    display: inline-flex;
+    gap: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+    flex-wrap: wrap;
+}
+
+/* 徽章：必须是「一眼看出是界面元素」而不是正文里的一串方括号 */
+.natsume-chip {
+    display: inline-block;
+    font-size: 0.72em;
+    line-height: 1.5;
+    padding: 0 7px;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    background: var(--black50a, rgba(0, 0, 0, 0.35));
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.natsume-chip.natsume-chip-aff { color: #f0b8d0; }
+.natsume-chip.natsume-chip-emo { color: #a9c4e8; }
+.natsume-chip.natsume-chip-ono { color: #b6d9a8; }
+.natsume-chip.natsume-chip-bad { color: #eda3a3; }
+
+/* 心动单独强调一下：它是好感度事件，不是普通标注 */
+.natsume-chip.natsume-chip-aff {
+    background: rgba(201, 160, 180, 0.22);
+    font-weight: 600;
+}
+
+.natsume-play {
+    cursor: pointer;
+    opacity: 0.65;
+    margin-left: 6px;
+    font-size: 0.9em;
+}
+
+.natsume-play:hover { opacity: 1; }
+.natsume-play.natsume-playing { opacity: 1; color: #c9a0b4; }
+
+#natsume-status {
+    font-size: 0.85em;
+    opacity: 0.8;
+    min-height: 1.2em;
+}
+
+.natsume-zh {
+    opacity: 0.75;
+    font-size: 0.95em;
+}
+
+/* ---------- 节奏同步：先出声、后出字 ---------- */
+
+.natsume-reveal-pending {
+    /* 注意用 visibility 而不是 display：要保住排版高度，
+       否则消息一藏一露会让整个聊天列表跳一下 */
+    visibility: hidden !important;
+}
+
+.natsume-loading {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85em;
+    opacity: 0.7;
+    padding: 2px 0;
+}
+
+.natsume-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #c9a0b4;
+    animation: natsume-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes natsume-pulse {
+    0%, 100% { opacity: 0.25; transform: scale(0.85); }
+    50%      { opacity: 1;    transform: scale(1.1); }
+}
+
+/* ---------- 常驻状态徽章：一眼看出 TTS 上线没有 ---------- */
+
+.natsume-badge {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 30000;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78em;
+    line-height: 1.6;
+    cursor: pointer;
+    user-select: none;
+    background: var(--black50a, rgba(0, 0, 0, 0.5));
+    border: 1px solid var(--white20a, rgba(255, 255, 255, 0.2));
+    color: inherit;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+    max-width: 46vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.natsume-badge:hover { opacity: 1; }
+
+.natsume-badge > i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #9aa0a6;
+    flex: 0 0 auto;
+}
+
+.natsume-badge-ok > i      { background: #7fc18a; box-shadow: 0 0 6px #7fc18a; }
+.natsume-badge-busy > i    { background: #c9a0b4; animation: natsume-pulse 1.1s ease-in-out infinite; }
+.natsume-badge-bad > i     { background: #d08b8b; box-shadow: 0 0 6px #d08b8b; }
+.natsume-badge-unknown > i { background: #9aa0a6; }

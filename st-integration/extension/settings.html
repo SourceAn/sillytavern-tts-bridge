@@ -1,0 +1,109 @@
+<div class="natsume-panel">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <b>四季夏目 · 语音与好感度</b>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+        <div class="inline-drawer-content">
+
+            <div class="natsume-row">
+                <label for="natsume-enabled">启用扩展</label>
+                <input type="checkbox" id="natsume-enabled">
+                <label for="natsume-autoplay">自动播放</label>
+                <input type="checkbox" id="natsume-autoplay">
+            </div>
+
+            <div class="natsume-row">
+                <label for="natsume-points">好感度</label>
+                <span id="natsume-points">0/100</span>
+                <div class="natsume-meter"><i id="natsume-meter-fill"></i></div>
+                <span id="natsume-stage">初识</span>
+            </div>
+
+            <div class="natsume-row">
+                <label for="natsume-scene">场合</label>
+                <select id="natsume-scene">
+                    <option value="公开">公开（有他人在场）</option>
+                    <option value="私下">私下（只有对方）</option>
+                    <option value="独处">独处（自言自语）</option>
+                    <option value="被注视">被注视</option>
+                    <option value="亲密场景">亲密场景</option>
+                </select>
+                <span id="natsume-resync" class="menu_button">同步到服务端</span>
+            </div>
+
+            <div class="natsume-row">
+                <label for="natsume-endpoint">TTS 端点</label>
+                <input type="text" id="natsume-endpoint" placeholder="留空自动（本机 127.0.0.1:9880）">
+            </div>
+
+            <div class="natsume-row">
+                <label for="natsume-scope">进度隔离</label>
+                <select id="natsume-scope">
+                    <option value="character">按角色（同一角色全部聊天共用）</option>
+                    <option value="chat">按聊天</option>
+                    <option value="global">全局共用</option>
+                </select>
+            </div>
+
+            <div class="natsume-row">
+                <label for="natsume-max-segments">单条最多句数</label>
+                <input type="number" id="natsume-max-segments" min="1" max="6" step="1">
+                <label for="natsume-max-chars">每句上限字数</label>
+                <input type="number" id="natsume-max-chars" min="10" max="200" step="5">
+            </div>
+
+            <div class="natsume-row">
+                <label for="natsume-pacing">先出声后出字</label>
+                <input type="checkbox" id="natsume-pacing">
+                <select id="natsume-reveal-mode">
+                    <option value="live">音频一响就显示文字</option>
+                    <option value="after">整条播完再显示文字</option>
+                </select>
+            </div>
+
+            <div class="natsume-row">
+                <label for="natsume-ono-split">拟声词单列</label>
+                <input type="checkbox" id="natsume-ono-split">
+                <label for="natsume-chips">显示徽章</label>
+                <input type="checkbox" id="natsume-chips">
+                <label for="natsume-zh">中文对照</label>
+                <input type="checkbox" id="natsume-zh">
+            </div>
+
+            <div class="natsume-row">
+                <label for="natsume-mark">好感度计分</label>
+                <input type="checkbox" id="natsume-mark">
+                <label for="natsume-strip-display">抹掉标签（显示）</label>
+                <input type="checkbox" id="natsume-strip-display">
+                <label for="natsume-strip-prompt">抹掉标签（上下文）</label>
+                <input type="checkbox" id="natsume-strip-prompt">
+            </div>
+
+            <div class="natsume-row">
+                <span id="natsume-health" class="menu_button">检测连接</span>
+                <span id="natsume-test" class="menu_button">测试语音</span>
+                <span id="natsume-reset" class="menu_button">好感度清零</span>
+            </div>
+
+            <div id="natsume-status">就绪</div>
+
+            <div class="natsume-hint">
+                <b>找不到这个面板？</b>它在「扩展」（拼图/方块图标）面板里 —— 顶部栏那个面板，
+                展开最上面的折叠条「<b>四季夏目 · 语音与好感度</b>」即是。
+                另外页面右下角常驻一个状态小徽章：<b>绿色</b>=TTS 在线、<b>粉色</b>=正在合成、
+                <b>红色</b>=连不上（点它可以立刻重连）。<br>
+                <b>节奏</b>：她出字比语音合成快得多，所以默认生成一结束就先把消息藏起来，
+                合成好、音频真的开始播的那一刻再把文字放出来 —— 读和听同时开始。
+                关掉「先出声后出字」就回到原来「文字立刻出现、声音随后跟上」的行为。<br>
+                <b>好感度怎么涨</b>：每轮对话 +1（60 秒内连发只算一次）；用户消息 ≥ 12 字 +1；
+                命中礼貌/关心词 +1，命中冒犯词 -1；模型打 <code>[心动]</code> 时额外 +2。<br>
+                <b>阶段门槛</b>：0 初识 · 20 暧昧初期 · 50 确认关系 · 80 亲密期。跨过门槛会自动推给 TTS 服务，
+                服务端据此夹紧语音的语气上限。<br>
+                <b>协议标签</b>：<code>[声:tsukkomi]</code> 选音色角度 · <code>[拟声:はぁ]</code> 单独合成 ·
+                <code>[译:…]</code> 中文对照 · <code>[场景:私下]</code> 切场合 · <code>[心动]</code> 加好感度。
+            </div>
+
+        </div>
+    </div>
+</div>

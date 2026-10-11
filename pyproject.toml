@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ttsdat"
+version = "0.1.0"
+description = "语音克隆素材盘点与分层工具（只读）"
+requires-python = ">=3.7"
+# 刻意保持零第三方依赖：整条流水线只依赖 ffmpeg 一个外部二进制，
+# 这样 Mac 和 Windows 上行为一致，也不会因为 numpy 版本问题卡住。
+dependencies = []
+
+[project.scripts]
+ttsdat = "ttsdat.cli:main"
+
+[tool.setuptools]
+packages = ["ttsdat"]
